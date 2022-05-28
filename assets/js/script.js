@@ -54,13 +54,14 @@ var renderChoices = function (questionCounter) {
     for (var i = 0; i < quizQuestions[questionCounter].options.length; i++) {
         // make a button for each
         var optionBtn = document.createElement("button");
+        optionBtn.setAttribute("class","btn_class")
         optionBtn.innerText = quizQuestions[questionCounter].options[i];
         textEl.appendChild(optionBtn);
         // btn.addEventListener("click",)
-        optionBtn.addEventListener("click",checkAnswer(questionCounter));
+        
     }
    
-    
+    optionBtn.addEventListener("click",checkAnswer(questionCounter));
 };
 var checkAnswer = function (choicesCounter) {
 if (quizQuestions[choicesCounter].options === quizQuestions[choicesCounter].answer){
