@@ -54,33 +54,44 @@ var renderChoices = function (questionCounter) {
     for (var i = 0; i < quizQuestions[questionCounter].options.length; i++) {
         // make a button for each
         var optionBtn = document.createElement("button");
-        optionBtn.setAttribute("class","btn_class")
+        optionBtn.setAttribute("id","btn_id")
         optionBtn.innerText = quizQuestions[questionCounter].options[i];
+        optionBtn.addEventListener("click", checkAnswer(questionCounter));
+        optionBtn.classList.add("btn_class")
+        document.body.appendChild(optionBtn);
         textEl.appendChild(optionBtn);
+        console.log('buttons got loaded with eventlistener')
         // btn.addEventListener("click",)
-        
+
+        // tried puting this into it's own function called checkAnswer on line 59 i had it called (click, checkAnswer) but because these buttons were created in this for loop i can't reference them back in that function
+        // so now i'm trying to make it go continue just from this function but still not getting a correct console log or textContent of correct
     }
    
-    optionBtn.addEventListener("click",checkAnswer(questionCounter));
+  
 };
 var checkAnswer = function (choicesCounter) {
-if (quizQuestions[choicesCounter].options === quizQuestions[choicesCounter].answer){
-    console.log('correct')
-    answerEl.textContent= "correct!";
-}
-else (quizQuestions[choicesCounter].options !== quizQuestions[choicesCounter].answer) 
-    answerEl.textContent = "wrong";
+    if (quizQuestions[choicesCounter].options === quizQuestions[choicesCounter].answer){
+        console.log('correct');
+        return answerEl.textContent= "correct!";
 
-};
+    }
+    else (quizQuestions[choicesCounter].options !== quizQuestions[choicesCounter].answer) 
+        answerEl.textContent = "wrong";
+    
+}
+
+
+
+// };
 // timer settings
 var quizTime = 10;
 var penaltyTime = 10;
-
+// my timer starts of slow doesn't load til like 2/3 seconds after the click, and it originally 60 seconds but for timing shorten down. also have to implement a -10 second penalty if question wrong
 var timerCountdown = function () {
-    timerEl.innerHTML = quizTime;
+    timerEl.innerHTML= quizTime;
     var countTimer = setInterval(function () {
-        quizTime - 1;
-        timerEl.innerHTML = quizTime--;
+        timerEl.innerHTML=quizTime --;
+        
         if (quizTime <= 0) {
             clearInterval(countTimer);
             timerEl.innerHTML = "Quiz over";

@@ -1,7 +1,8 @@
-html {
+:root {
+    min-width: 100%;
     min-height: 100%;
-    background: linear-gradient(to top ,#8A2BE2 20%,  white)
-
+    background: linear-gradient(to top ,#8A2BE2 20%,  white);
+    font-size: 65%;
 }
 * {
     box-sizing: border-box;
@@ -9,47 +10,64 @@ html {
     padding: 0;
     font-family: Jazz LET, fantasy;
 }
-body {
-    width: 100vw;
-    height: 100vh;
+h1 {
+    font-size: 5.2rem;
 }
-.container {
-    position: absolute;
-    left:32%;
-    bottom: 45%;
-    width: 430px;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-
-
-}
-
-/* button {
-    border-radius: 10px;
-    width: 113px;
-    height: 27px;
-    background-color: blueviolet;
-} */
-.btn {
-    font-size: 1.6rem;
-    padding:1rem 0;
-    width: 11rem;
-    height: 5rem;
-    border-radius: 30px;
-    background-color: blueviolet;
+div {
+    font-size: 3.2rem;
 }
 button {
     border-radius: 10px;
     width: 22rem;
-    height: 2rem;
-    background-color: blueviolet;
+    height: 3rem;
+    background: linear-gradient(to top ,#8A2BE2 20%,  white);
     margin:5px;
 }
+.container {
+    width: 100vw;
+    height: 100vh;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+.container > * {
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+.centerText {
+    text-align: center;
+}
+
+.text {
+    font-size: 3.2rem;
+}
+.btn {
+    font-size: 1.9rem;
+    padding:1rem 0;
+    width: 20rem;
+    height: 5rem;
+    border-radius: 30px;
+    
+}
+
 .timer {
 position: absolute;
 top: 0;
 right:0;
 padding-right: 10px;
+font-size: 3rem;
+}
+.highscore {
+    font-size: 3rem;
 }
