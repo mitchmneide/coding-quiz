@@ -16,13 +16,7 @@ h1 {
 div {
     font-size: 3.2rem;
 }
-button {
-    border-radius: 10px;
-    width: 22rem;
-    height: 3rem;
-    background: linear-gradient(to top ,#8A2BE2 20%,  white);
-    margin:5px;
-}
+
 .container {
     width: 100vw;
     height: 100vh;
@@ -58,7 +52,7 @@ button {
     width: 20rem;
     height: 5rem;
     border-radius: 30px;
-    
+    background: linear-gradient(to top ,#8A2BE2 20%,  white);
 }
 
 .timer {
@@ -70,4 +64,32 @@ font-size: 3rem;
 }
 .highscore {
     font-size: 3rem;
+}
+
+.hidden {
+    display: none;
+}
+.option {
+    border-radius: 10px;
+    width: 22rem;
+    height: 3rem;
+    background: linear-gradient(to top ,#8A2BE2 20%,  white);
+    margin:5px;
+}
+
+.questions-content{
+    margin: 10px;
+    padding: 5px;
+    width: 80vw;
+    height: 10vh;
+    font-size: 3.2rem;
+    text-align: center;  
+}
+.option-contatiner {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+    width: 80vw;
+    height: 20vh;
 }

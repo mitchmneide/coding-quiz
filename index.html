@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/styles.css"/>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Quiz!</title>
 </head>
 <body">
-<a href="/highscore.html" class="highscore">High Scores</a>
-<div id="timeSet" class="timer">0</div>
+    <a href="/highscore.html" class="highscore">High Scores</a>
+    <div id="timeSet" class="timer">0</div>
     <div class="container">
-        
+
         <div id="questionContainer" class="flex-column flex-center">
-            
-        <h1> Coding Quiz! </h1>
-        <p class="text centerText"> Test your coding knowledge with this quiz! You'll have 60 seconds ! And your timer will go down 10 seconds for every question answered incorrectly! Have fun and good luck!</p>
-        <button class="btn" id="btn-begin"> Start the Quiz</button>
-        <div id="correctWrong"></div>
+
+            <h1> Coding Quiz! </h1>
+            <p class="text centerText"> Test your coding knowledge with this quiz! You'll have 60 seconds ! And your
+                timer will go down 10 seconds for every question answered incorrectly! Have fun and good luck!</p>
+            <button class="btn" id="btn-begin"> Start the Quiz</button>
+            <div id="correctWrong" class="answered"></div>
+        </div>
+        <div id="questions-content" class="hidden">
+            <div id="question" class="centerText">Question goes here.</div>
+
+            <div class="option-container flex-center flex-column text" id="answers">
+                <button class="option">option1</button>
+
+                <button class="option">option2</button>
+
+                <button class="option">option3</button>
+
+                <button class="option">option4</button>
+            </div>
+        </div>
     </div>
-</div>
     <script src="./assets/js/script.js"></script>
-</body>
+    </body>
+
 </html>
