@@ -6,6 +6,14 @@ var timerEl = document.querySelector("#timeSet")
 const container = document.getElementById("questions-content");
 var questionEl = document.querySelector("#question")
 var answerBtn = document.querySelector("#answers");
+var username = document.querySelector("#username");
+var saveBtn = document.querySelector("#saveScore");
+var scoreHigh = document.querySelector("#highScore")
+var currentScore = document.querySelector("#current")
+var saveInitial = document.querySelector("#initials");
+var saveScore = document.querySelector("#submitInitials");
+
+
 let shuffleQs, currentIndex;
 const questions = [
     { 
@@ -47,6 +55,7 @@ var reset = function () {
         (answerBtn.firstChild)
     }
 }
+// start quiz function 
 var startQuiz = function () {
     beginEl.remove();
     textEl.remove();
@@ -83,6 +92,7 @@ var answerSelected = function (event) {
     } 
     else {
         console.log ("wrong")
+        quizTime -= 10;
         answerEl.innerText = "Wrong"
     }
     nextQuestion();
@@ -90,18 +100,17 @@ var answerSelected = function (event) {
 // timer settings
 var quizTime = 10;
 var penaltyTime = 10;
-// my timer starts of slow doesn't load til like 2/3 seconds after the click, and it originally 60 seconds but for timing shorten down. also have to implement a -10 second penalty if question wrong
 var timerCountdown = function () {
-    timerEl.innerHTML= quizTime;
+    timerEl.innerHTML = quizTime;
     var countTimer = setInterval(function () {
-        timerEl.innerHTML = quizTime; timerEl.innerHTML=quizTime --;
-        
+        quizTime--;
+        timerEl.innerHTML = quizTime;
         if (quizTime <= 0) {
             clearInterval(countTimer);
-            timerEl.innerHTML = "Quiz over";
+            timerEl.innerHTML = "quiz over"
+            quizOver();
         }
-    }, 1000)
-
+    }, 1000);
 
 };
 answerBtn.addEventListener("click", () =>{
@@ -109,4 +118,5 @@ answerBtn.addEventListener("click", () =>{
     nextQuestion();
 
 })
+// begins the quiz
 beginEl.addEventListener("click", startQuiz);
