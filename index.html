@@ -9,7 +9,7 @@
     <title>Quiz!</title>
 </head>
 <body">
-    <a href="#" class="highscore">High Scores</a>
+    <a href="#" class="highscore" id="viewHigh">High Scores</a>
     <div id="current" class="hidden">0</div>
     <div id="timeSet" class="timer">0</div>
     <div class="container">
@@ -37,6 +37,12 @@
             </div>
             <div id="correctWrong" class="answered centerText"></div>
         </div>
+        <div id="high-score-section" class="hidden">
+        <h3>
+            Your final score is
+            <span id="finalS"></span>
+        </h3>
+        </div> 
         <input id="initials" class="hidden" type="text" placeholder="Enter Initials here">
         <button type="submit" id="submitInitials" class="hidden savebtn">Save</button>
     </div>

@@ -6,13 +6,12 @@ var timerEl = document.querySelector("#timeSet")
 const container = document.getElementById("questions-content");
 var questionEl = document.querySelector("#question")
 var answerBtn = document.querySelector("#answers");
-var username = document.querySelector("#username");
-var saveBtn = document.querySelector("#saveScore");
-var scoreHigh = document.querySelector("#highScore")
+var scoreHigh = document.querySelector("#viewHigh")
 var currentScore = document.querySelector("#current")
 var saveInitial = document.querySelector("#initials");
 var saveScore = document.querySelector("#submitInitials");
-
+var highSection = document.querySelector("#high-score-section");
+var finalScore = document.querySelector("#finalS")
 
 let shuffleQs, currentIndex;
 const questions = [
@@ -63,6 +62,7 @@ var startQuiz = function () {
     shuffleQs = questions.sort(() => Math.random() -.5)
     currentIndex = 0;
     timerCountdown();
+    highScore();
     nextQuestion();
 };
 var nextQuestion = function() {
@@ -88,6 +88,7 @@ var answerSelected = function (event) {
     Array.from(answerBtn.children).forEach
     if (correctAnswer) {
         console.log("correct");
+        currentScore.innerText =score +=1;
         answerEl.innerText = "Correct!"
     } 
     else {
@@ -113,10 +114,43 @@ var timerCountdown = function () {
     }, 1000);
 
 };
-answerBtn.addEventListener("click", () =>{
-    currentIndex++ 
-    nextQuestion();
+var score = 0;
+var scoreTotal ="";
+var highScore = function () {
+    currentScore.classList.remove("hidden");
+score = 0;
+score +1;
+}
+var quizOver = function() {
+    container.remove();
+    highSection.classList.remove("hidden");
+    saveInitial.classList.remove('hidden');
+    saveScore.classList.remove('hidden');
+    finalScore.textContent = score;
+}
 
+
+
+var savingScore = function (event){
+finalScore = score
+localStorage.setItem ("score", score.value);
+localStorage.setItem ("initials", saveInitial.value);
+
+localStorage.getItem("score")
+localStorage.getItem("initials")
+
+
+}
+answerBtn.addEventListener("click", () => {
+    currentIndex++
+    if(currentIndex < questions.length){
+    nextQuestion();
+    }
+    else {
+        quizOver();
+    }
+    
 })
+saveScore.addEventListener("click", savingScore)
 // begins the quiz
 beginEl.addEventListener("click", startQuiz);
