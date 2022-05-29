@@ -3,7 +3,9 @@ var beginEl = document.querySelector("#btn-begin");
 var textEl = document.querySelector("#questionContainer");
 var answerEl = document.querySelector("#correctWrong");
 var timerEl = document.querySelector("#timeSet")
-var questionEl = document.querySelector("#questions-content")
+const container = document.getElementById("questions-content");
+var questionEl = document.querySelector("#question")
+var answerBtn = document.querySelector("#answers");
 let shuffleQs, currentIndex;
 const questions = [
     { 
@@ -39,31 +41,52 @@ const questions = [
         ]
     }
 ];
-
+var reset = function () {
+    while(answerBtn.firstChild){
+        answerBtn.removeChild
+        (answerBtn.firstChild)
+    }
+}
 var startQuiz = function () {
     beginEl.remove();
     textEl.remove();
-    questionEl.classList.remove("hidden")
+    container.classList.remove('hidden')
     shuffleQs = questions.sort(() => Math.random() -.5)
     currentIndex = 0;
+    timerCountdown();
     nextQuestion();
 };
 var nextQuestion = function() {
-
+    reset();
+    showQuestions(shuffleQs[currentIndex]);
 }
 var showQuestions = function(question){
     questionEl.innerText = question.question
     question.answers.forEach(answer => {
         var answerButton = document.createElement('button')
-        answerButton.innerText= answer.text 
+        answerButton.innerText = answer.text 
         answerButton.classList.add('option')
         if (answer.correct) {
             answerButton.dataset.correct= answer.correct
         }
-        answerButton.addEventListener('click', answerSelected)
+        answerButton.addEventListener('click', answerSelected);
+        answerBtn.appendChild(answerButton);
     })
 }
-
+var answerSelected = function (event) {
+    var selectedAnswer = event.target
+    var correctAnswer = selectedAnswer.dataset.correct 
+    Array.from(answerBtn.children).forEach
+    if (correctAnswer) {
+        console.log("correct");
+        answerEl.innerText = "Correct!"
+    } 
+    else {
+        console.log ("wrong")
+        answerEl.innerText = "Wrong"
+    }
+    nextQuestion();
+}
 // timer settings
 var quizTime = 10;
 var penaltyTime = 10;
@@ -81,17 +104,9 @@ var timerCountdown = function () {
 
 
 };
+answerBtn.addEventListener("click", () =>{
+    currentIndex++ 
+    nextQuestion();
 
-
-// var answerEl = function(event) {
-//     var answerPicked = event.target 
-//     if (quizQuestions[0].a === answerPicked.innerText) {
-//         answerEl.innerText= "Correct!";
-//     }
-//     else {
-//         answerEl.innerText = "Wrong!";
-//     }
-// };
-
-
+})
 beginEl.addEventListener("click", startQuiz);
