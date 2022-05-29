@@ -4,6 +4,7 @@ var textEl = document.querySelector("#questionContainer");
 var answerEl = document.querySelector("#correctWrong");
 var timerEl = document.querySelector("#timeSet")
 var questionEl = document.querySelector("#questions-content")
+let shuffleQs, currentIndex;
 const questions = [
     { 
         question: "Where in the HTML does the JavaScript code go?",
@@ -43,6 +44,8 @@ var startQuiz = function () {
     beginEl.remove();
     textEl.remove();
     questionEl.classList.remove("hidden")
+    shuffleQs = questions.sort(() => Math.random() -.5)
+    currentIndex = 0;
     nextQuestion();
 };
 var nextQuestion = function() {
@@ -50,6 +53,15 @@ var nextQuestion = function() {
 }
 var showQuestions = function(question){
     questionEl.innerText = question.question
+    question.answers.forEach(answer => {
+        var answerButton = document.createElement('button')
+        answerButton.innerText= answer.text 
+        answerButton.classList.add('option')
+        if (answer.correct) {
+            answerButton.dataset.correct= answer.correct
+        }
+        answerButton.addEventListener('click', answerSelected)
+    })
 }
 
 // timer settings
