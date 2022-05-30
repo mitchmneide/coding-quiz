@@ -12,6 +12,7 @@ var saveInitial = document.querySelector("#initials");
 var saveScore = document.querySelector("#submitInitials");
 var highSection = document.querySelector("#high-score-section");
 var finalScore = document.querySelector("#finalS")
+var listOfHighScores = document.querySelector("#listOfHighScores")
 
 let shuffleQs, currentIndex;
 const questions = [
@@ -131,14 +132,27 @@ var quizOver = function() {
 
 
 
-var savingScore = function (event){
-finalScore = score
-localStorage.setItem ("score", score.value);
-localStorage.setItem ("initials", saveInitial.value);
+var savingScore = function (){
+    var savedScores = localStorage.getItem("high scores")
+    var scoresArray;
+    if (savedScores === null){
+        scoresArray = [];
+    } else {
+        scoresArray = JSON.parse(savedScores)
+    }
+var userScore = {
+    initials : saveInitial.value,
+    score: finalScore.textContent
+};
+console.log(userScore)
+scoresArray.push (userScore);
+var scoresString = JSON.stringify(scoresArray);
+localStorage.setItem("high scores", scoresString)
+scoresSection();
+}
 
-localStorage.getItem("score")
-localStorage.getItem("initials")
-
+var scoresSection = function (){
+    listOfHighScores.textContent = localStorage.getItem("high scores")
 
 }
 answerBtn.addEventListener("click", () => {
@@ -151,6 +165,7 @@ answerBtn.addEventListener("click", () => {
     }
     
 })
+
 saveScore.addEventListener("click", savingScore)
 // begins the quiz
 beginEl.addEventListener("click", startQuiz);
